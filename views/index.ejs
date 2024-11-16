@@ -25,7 +25,6 @@
             padding: 2rem;
             transition: transform 0.3s ease;
         }
-       
         .btn-primary {
             background-color: #1abc9c;
             border-color: #1abc9c;
@@ -61,6 +60,9 @@
         .highlight {
             color: #1abc9c;
         }
+        .btn {
+            margin-bottom: 1.5rem; /* Add margin below buttons */
+        }
     </style>
 </head>
 <body>
@@ -72,7 +74,6 @@
         Share the link or QR code directly via <span class="highlight">WhatsApp</span> to request money from friends, family, or customers.
         Simply enter your <strong>UPI ID</strong> and the <strong>amount</strong>, and you're ready to go!
     </p>
-
 
     <div class="card shadow p-4">
         <form action="/generate-link" method="POST" class="row g-3">
@@ -94,18 +95,24 @@
         <div class="mt-4 text-center qr-container">
             <h3>QR Code:</h3>
             <img src="<%= qrCode %>" alt="QR Code for Payment" class="img-fluid mb-3">
-            <!-- WhatsApp Share Button -->
-            <a 
-                href="https://wa.me/?text=Hi!%20Here%20are%20the%20payment%20details:%0A%0A🔗%20*UPI%20Payment%20Link:*%20<%= paymentLink %>%0A💰%20*Amount:*%20INR%20<%= amount %>%0A%0A📷%20*Scan%20QR%20Code%20to%20Pay:*%20<%= qrCode %>%0A%0AThank%20you!"
-                class="btn btn-success"
-                target="_blank"
-            >
-                Share via WhatsApp
-            </a>
-            <!-- Download Button for QR Code -->
-            <a href="<%= qrCode %>" download="payment-qr-code.png" class="btn btn-secondary mt-3">
-                Download QR Code
-            </a>
+            <div class="row g-2">
+                <!-- WhatsApp Share Button -->
+                <div class="col-12 col-md-6">
+                    <a 
+                        href="https://wa.me/?text=Hi!%20Here%20are%20the%20payment%20details:%0A%0A🔗%20*UPI%20Payment%20Link:*%20<%= paymentLink %>%0A💰%20*Amount:*%20INR%20<%= amount %>%0A%0A📷%20*Scan%20QR%20Code%20to%20Pay:*%20<%= qrCode %>%0A%0AThank%20you!"
+                        class="btn btn-success w-100"
+                        target="_blank"
+                    >
+                        Share via WhatsApp
+                    </a>
+                </div>
+                <!-- Download Button for QR Code -->
+                <div class="col-12 col-md-6">
+                    <a href="<%= qrCode %>" download="payment-qr-code.png" class="btn btn-secondary w-100">
+                        Download QR Code
+                    </a>
+                </div>
+            </div>
         </div>
     <% } %>
 </div>
